@@ -1,3 +1,6 @@
+# eleventy output dir (may remove this is we want to keep archived build)
+di/
+
 # Logs
 logs
 *.log
