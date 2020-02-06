@@ -1,0 +1,21 @@
+{
+  "name": "di_module",
+  "version": "0.1.0",
+  "description": "Data Interpretation Instruction Module",
+  "scripts": {
+    "build": "webpack && eleventy",
+    "start": "concurrently \"webpack --watch\" \"eleventy --serve\""
+  },
+  "author": "Scott Silliman <scott.t.silliman@gmail.com>",
+  "license": "Proprietary",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "concurrently": "^5.1.0",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.0.2",
+    "prettier": "^1.19.1",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

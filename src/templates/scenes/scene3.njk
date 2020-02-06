@@ -1,0 +1,33 @@
+---
+id: scene3
+tags: scenes
+question:
+    type: "mc"
+    text: "Salt crystals grew..."
+    correctAnswer: "a"
+    ntlFb: "Thanks!"
+    options:
+        - value: "a"
+          label: "more in hot water"
+        - value: "b"
+          label: "more in cold water"
+        - value: "c"
+          label: "equally well in hot and cold water"
+---
+
+{% extends "single-column.njk" %}
+{% import "forms.njk" as forms %}
+{% block content %}
+
+<p class="text-xxl text-centered">
+Results: weight of crystal growth
+</p>
+
+<img src="img/1_DITable2-6.png" class="img-centered" />
+
+<p class="text-xl text-centered">
+What do you think these results suggest?
+</p>
+  
+{{ forms.radios_form(id, question, isVert=true) }}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% macro namedTransition(sceneId, name, text) %}
+    <button class="link transition-to text-lg"
+            id="{{sceneId}}_{{name}}"
+            data-transition="{{name}}">
+        {{text}}
+    </button>
+{% endmacro %}

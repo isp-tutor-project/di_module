@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title> Data Interpretation Instruction Module </title>
+    </head>
+    <body>
+        <main class="my-main">
+            <div id="scene_id_region"></div>
+            {% for scene in collections.scenes %}
+                <section id="{{scene.data.id}}" class="scene">
+                    {{ scene.templateContent | safe }}
+                </section>
+            {% endfor %}
+            <div id="nav-btns">
+                <img id="prev_btn" class="nav-btn prev-btn" />
+                <img id="next_btn" class="nav-btn next-btn" />
+            </div>
+        </main>
+        <script src="./app-bundle.js"></script>
+    </body> 
+</html>

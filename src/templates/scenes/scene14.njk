@@ -1,0 +1,24 @@
+---
+id: scene14
+tags: scenes
+heading: "Results: weight of crystal growth"
+---
+
+{% extends "stats.njk" %}
+{% import "link.njk" as link %}
+
+{% block rhs %}
+    <p class="text-xl">
+        What is the median value?
+    </p>
+    <p class="text-xl">
+        The median is number that describes a typical value for a set of numbers.
+    </p>
+    <p class="text-xl">
+        The median in a set of numbers sorted from low to high (or smallest to
+        largest) is the middle number in the set.
+    </p>
+    <p>
+        {{ link.namedTransition(id, "more", "more") }}
+    </p>
+{% endblock %}
