@@ -1,21 +1,20 @@
 import "../css/index.css";
 
-// create sceneIDs
-let scenes = [];
-for (let i of Array(16).keys()) {
-    scenes.push(`intro${i + 1}`);
-}
-for (let i of Array(113).keys()) {
-    scenes.push(`scene${i + 1}`);
-}
+import { reIndexData } from './reindex';
+import { sceneData } from "./sceneData";
 
-let sceneFormInfo = {};
-let currSceneIdx;
+let DEBUG;
+let scenes = {};
+let currSceneId = "";
 let sceneIdRegion;
 let nextBtn;
 let prevBtn;
+let backToQuestionBtn;
+let readyToAnswerBtn;
+let backToQuestionTransition;
+let readyToAnswerTransition;
 
-function handleRadioFormSubmit(e) { 
+function handleRadioFormSubmit(e) {
     e.preventDefault();
     let submitBtn = e.target;
     let form = submitBtn.form;
@@ -25,12 +24,9 @@ function handleRadioFormSubmit(e) {
     if (form.checkValidity()) {
         let sfi = sceneFormInfo[sceneId]
         let radios = Array.from(form.elements)
-                          .filter((ele) => "radio" == ele.type);
+            .filter((ele) => "radio" == ele.type);
         let selectedAnswer = radios.filter((radio) => radio.checked)[0];
         let val = selectedAnswer.value.trim();
-        // let labelId = `${selectedAnswer.id}_label`;
-        // console.log(labelId);
-        // let ansText = document.getElementById(labelId).innerText.trim();
         let ansText = sfi.options[val];
         let correctAnswer = sfi.correctAnswer;
         let isCorrect;
@@ -64,92 +60,239 @@ function handleRadioFormSubmit(e) {
             timestamp: new Date().toLocaleString()
         }
         console.log(JSON.stringify(log));
-        
+
         for (let radio of radios) {
-            radio.setAttribute("disabled", true);  
+            radio.setAttribute("disabled", true);
         }
         submitBtn.setAttribute("disabled", true);
-        enableNavBtn(nextBtn);
-        enableNavBtn(prevBtn);
+        enableBtn(nextBtn);
+        enableBtn(prevBtn);
     } else if (fbRegion) {
-        fbRegion.innerHTML = 
+        fbRegion.innerHTML =
             `<span class="text-danger">Please select an option</span>`;
     }
 }
 
+
+function performDefaultSceneActions() {
+    hideButtons(selectBtns(["backToQuestion", "readyToAnswer"]));
+    showButtons(selectBtns(["prev", "next"]));
+}
+
 function transitionTo(sceneId) {
+    console.log(`transitionTo(${sceneId}) from ${currSceneId}`);
+    let action = {
+        type: 'SCENE_TRANSITION',
+        from: currSceneId,
+        to: sceneId,
+        timestamp: new Date().toLocaleString()
+    }
+    currSceneId = sceneId;
+    console.log(JSON.stringify(action));
     for (let scene of document.getElementsByClassName("scene")) {
         scene.classList.remove("current-scene");
     }
-    document.getElementById(sceneId).classList.add("current-scene");
-    sceneIdRegion.innerHTML = sceneId;
-    let form = document.getElementById(`${sceneId}_radio_form`);
+    document.getElementById(currSceneId).classList.add("current-scene");
+    sceneIdRegion.innerHTML = currSceneId;
+    let currScene = scenes[currSceneId];
+    performDefaultSceneActions();
+    if (currScene.actions) {
+        performSceneActions(currScene.actions);
+    }
+    // let form = document.getElementById(`${currSceneId}_radio_form`);
     // if (form) {
-    //     disableNavBtn(nextBtn);
-    //     disableNavBtn(prevBtn);
+    //     disableBtn(nextBtn);
+    //     disableBtn(prevBtn);
     // }
-    let log = {
-        action: 'SCENE_TRANSITION',
-        sceneId: sceneId, 
-        timestamp: new Date().toLocaleString()
-    }
-    console.log(JSON.stringify(log));
-
 }
 
-function setCurrScene(sceneID) {
-    let tmp = scenes.indexOf(sceneID);
-    if (-1 !== tmp) {
-        currSceneIdx = tmp;
+function setCurrScene(sceneId) {
+    console.log(`setCurrScene(${sceneId})`);
+    if (!scenes.hasOwnProperty(sceneId)) {
+        console.error(`scene "${sceneId} does not exist`);
+    } else {
+        transitionTo(sceneId);
+    }
+}   
+
+// handler for custom transitions
+function handleTransition(e) {
+    e.preventDefault();
+    let btn = e.target;
+    let [sceneId, transitionName] = btn.id.split('_');
+    if (sceneId !== currSceneId) {
+        console.error(
+            `link sceneId: ${sceneId} is not the current scene ${currentSceneId}`
+        );
+    } else if (!scenes[currSceneId].transitions.hasOwnProperty(transitionName)) {
+        console.error(
+            `scene ${sceneId} has no transition named ${transitionName}`
+        );
+    } else {
+        transitionTo(scenes[currSceneId].transitions[transitionName]);
     }
 }
 
+// next btn handler
 function nextScene(e) {
     e.preventDefault();
-    if (currSceneIdx !== scenes.length - 1) {
-        currSceneIdx++;
+    if (!scenes[currSceneId].transitions.hasOwnProperty("next")) {
+        console.error(
+            `scene "${currSceneId}" (current scene) has no "next" transition`
+        );
+    } else {
+        transitionTo(scenes[currSceneId].transitions.next);
     }
-    transitionTo(scenes[currSceneIdx]);
 }
 
+
+// prev btn handler (development only - at least in this app)
 function prevScene(e) {
     e.preventDefault();
-    if (currSceneIdx > 0) {
-        currSceneIdx--;
+    if (!scenes[currSceneId].transitions.hasOwnProperty("prev")) {
+        console.error(
+            `scene "${currSceneId}" (current scene) has no "prev" transition`
+        );
+    } else {
+        transitionTo(scenes[currSceneId].transitions.prev);
     }
-    transitionTo(scenes[currSceneIdx]);
 }
 
-// only used for displaying the first scene we arrive at.  Could be different
-// from the first scene in scenes, if returning to app and reverting to
-// the current scene stored in firestore
-function showCurrentScene() {
-    transitionTo(scenes[currSceneIdx]);
+function backToQuestion(e) {
+    e.preventDefault();
+    transitionTo(backToQuestionTransition);
 }
 
-function disableNavBtn(btn) {
-    btn.classList.add("nav-btn-disabled");
+function readyToAnswer(e) {
+    e.preventDefault();
+    transitionTo(readyToAnswerTransition);
 }
 
-function enableNavBtn(btn) {
-    btn.classList.remove("nav-btn-disabled");
+function selectBtns(btnNames) {
+    let btns = [];
+    for (let btnName of btnNames) {
+        if ("prev" === btnName) {
+            btns.push(prevBtn);
+        } else if ("next" === btnName) {
+                btns.push(nextBtn);
+        } else if ("readyToAnswer" === btnName) {
+            btns.push(readyToAnswerBtn);
+        } else if ("backToQuestion" === btnName) {
+            btns.push(backToQuestionBtn);
+        } else {
+            console.error(`undefined btn: ${btnName}`);
+        }
+    }
+    return btns;
+}
+ 
+function hiliteDogs(dogs) {
+    console.log(`entering hiliteDogs(${dogs})`);
+    for (let dog of dogs) {
+        document.getElementById(`${currSceneId}_${dog}`).bgColor = "lightblue";
+    }
+    console.log("leaving hiliteDogs()")
+}
+
+function performSceneActions(actions) {
+    // let btns;
+    console.log("performSceneActions()", actions);
+    for (let action of actions) {
+        let btns = [];
+        switch (action.name) {
+            case "hideBtns":
+                btns = selectBtns(action.args);
+                hideButtons(btns);
+                break;
+            case "showBtns":
+                btns = selectBtns(action.args);
+                showButtons(btns);
+                break;
+            case "hiliteDogs":
+                hiliteDogs(action.args);
+                break;
+            default:
+                console.log(`unknown action: ${action.name}`);
+        }
+    }
+}
+
+
+function hideButtons(btns) {
+    console.log("hideButtons()", btns);
+    for (let btn of btns) {
+        disableBtn(btn)
+        hideBtn(btn);
+    }
+}
+
+function showButtons(btns) {
+    for (let btn of btns) {
+        if (btn === prevBtn && "development" !== process.env.NODE_ENV) {
+            continue;
+        }
+        enableBtn(btn)
+        showBtn(btn);
+    }
+}
+
+function hideBtn(btn) {
+    btn.classList.add("hidden");
+}
+
+function showBtn(btn) {
+    btn.classList.remove("hidden");
+}
+
+function disableBtn(btn) {
+    btn.classList.add("disabled");
+}
+
+function enableBtn(btn) {
+    btn.classList.remove("disabled");
+}
+
+function setBtnHandlersFromData(data) {
+    // allows us to define backToQuestionBtn and readyToAnswerBtn
+    // and their handlers, but let what transition they perform be data-driven
+    // unit-tests verify that all transitions of these 2 types point to the
+    // same scene, so we only need to select the first
+    let btq = data.find((scene) => scene.transitions.hasOwnProperty("backToQuestion"));
+    if (btq) {
+        backToQuestionTransition = btq.transitions.backToQuestion;
+        backToQuestionBtn.addEventListener("click", backToQuestion);
+    }
+    let rtq = data.find((scene) => scene.transitions.hasOwnProperty("readyToAnswer"));
+    if (rtq) {
+        readyToAnswerTransition = rtq.transitions.readyToAnswer;
+        readyToAnswerBtn.addEventListener("click", readyToAnswer);
+    }    
 }
 
 function initApp() {
     console.log("start app init");
-
+    console.log(`running in "${process.env.NODE_ENV}" mode`);
+    DEBUG = process.env.DEBUG;
+    console.log(`DEBUG: ${DEBUG}`);
     // get references to some always present elements
     sceneIdRegion = document.getElementById("scene_id_region");
     nextBtn = document.getElementById("next_btn");
     prevBtn = document.getElementById("prev_btn");
+    backToQuestionBtn = document.getElementById("back_to_question_btn");
+    readyToAnswerBtn = document.getElementById("ready_to_answer_btn");
+
+    // re-index sceneData (array) as scenes (dict)
+    scenes = reIndexData(sceneData);
+    setBtnHandlersFromData(sceneData);
 
     // setup event-listeners
     nextBtn.addEventListener("click", nextScene);
     prevBtn.addEventListener("click", prevScene);
+
     for (let btn of document.getElementsByClassName("submit-radio-form-btn")) {
         btn.addEventListener("click", handleRadioFormSubmit);
         let sceneId = btn.id.split('_')[0];
-        sceneFormInfo[sceneId] = {options: {}};
+        scenes[sceneId].formInfo = {options: {}};
     }
     // collect form info for scenes which have them
     let formInfoClassNames = [
@@ -161,21 +304,29 @@ function initApp() {
             `${words[0]}${words[1][0].toLocaleUpperCase()}${words[1].slice(1)}`;
         for (let ele of document.getElementsByClassName(className)) {
             let sceneId = ele.id.split('_')[0];
-            sceneFormInfo[sceneId][attrName] = ele.value;
+            scenes[sceneId].formInfo[attrName] = ele.value;
         }
     }
     for (let label of document.getElementsByClassName('option-label')) {
         let tmp = label.htmlFor.split('_');
         let sceneId = tmp[0];
         let option = tmp[tmp.length -1];
-        sceneFormInfo[sceneId].options[option] = label.innerText;
+        scenes[sceneId].formInfo['options'][option] = label.innerText;
+    }
+    for (let btn of document.getElementsByClassName("transition-to")) {
+        let [sceneId, transitionName] = btn.id.split('_');
+        console.log(
+            `found transition named "${transitionName} for ${sceneId}`
+        );
+        btn.addEventListener("click", handleTransition);
     }
     // to help with debugging in develpment
-    window.sceneFormInfo = sceneFormInfo;
+    window.scenes = scenes;
 
+    // console.log(scenes);
     // hard-coding to specific scene, but this will be gotten from firestore
-    setCurrScene("scene15");
-    showCurrentScene();
+    setCurrScene("scene12");
+
     console.log("app init complete");
 }
 
