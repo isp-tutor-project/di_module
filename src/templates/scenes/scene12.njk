@@ -9,22 +9,21 @@ heading: "Results: weight of crystal growth"
 
 
 {% block rhs %}
-
-    <p class="text-xl">
-        What is the mean (or average) value?
-    </p>
-    <p class="text-xl">
-        The mean is a number that describes a typical value for a set of numbers.
-    </p>
-    <p class="text-xl">
-        You can calculate the mean of a set of numbers by finding the SUM of
-        the numbers. Then, you divide that sum by the number of numbers in
-        the set.
-    </p>
-
-    {{ link.namedTransition(id, "more", "more") }}
+    {% vertcenter %}
+        <p class="text-xl">
+            <b>What is the <u>mean</u> (or average) value?</b>
+        </p>
+        <p class="text-xl">
+            The mean is a number that describes a typical value for a set of numbers.
+        </p>
+        <p class="text-xl">
+            You can calculate the mean of a set of numbers by finding the SUM of
+            the numbers. Then, you divide that sum by the number of numbers in
+            the set.
+        </p>
+        <p class="text-centered">
+            {{ link.namedTransition(id, "more", "more") }}        
+        </p>
+    {% endvertcenter %}
+{% endblock %} 
  
- back to ? (slide 11)  I’m ready to answer. slide 26
-
-
-{% endblock %}

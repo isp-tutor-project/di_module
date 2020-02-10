@@ -1,5 +1,30 @@
 ---
 id: scene24
 tags: scenes
+heading: "Results: weight of crystal growth"
 ---
 
+{% extends "stats.njk" %}
+{% import "link.njk" as link %}
+
+{% block rhs %}
+    <p class="text-xl">
+        What is the range of a set of numbers?
+    </p>
+    <p class="text-xl">
+        The range of a set of numbers is the difference between the largest and
+        smallest numbers.
+    </p>
+    <p class="text-xl">
+        For example, in this set of dog weights (sorted from lowest to highest),
+        the range is calculated as:
+    </p>
+    <p class="text-xxl">
+        <code>
+            64.7 - 9.2 = 55.5 lb
+        </code>
+    </p>
+    <p>
+        {{ link.namedTransition(id, "more", "more") }}
+    </p>
+{% endblock %}

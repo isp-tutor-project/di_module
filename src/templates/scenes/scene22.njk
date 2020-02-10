@@ -1,5 +1,28 @@
 ---
 id: scene22
 tags: scenes
+heading: "Results: weight of crystal growth"
 ---
+
+{% extends "stats.njk" %}
+{% import "link.njk" as link %}
+
+{% block rhs %}
+    <p class="text-xl">
+        What is the median value?
+    </p>
+    <p class="text-xl">
+        We have found the middle number!!
+    </p>
+    <p class="text-xl">
+        The median value is 42.4!
+    </p>
+    <p class="text-xl">
+        "Scout" is our median dog.  :) 
+    </p>
+    <p>
+        {{ link.namedTransition(id, "back", "back") }} 
+    </p>
+{% endblock %}
+
 
