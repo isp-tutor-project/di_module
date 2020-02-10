@@ -4,37 +4,23 @@
 }
 
 html,
-body {
+body,
+main {
     height: 100%;
     width: 100%;
     margin: 0;
     background-color: white;
 }
 
-
 main {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1280px;
-    height: 100%;
     border: solid #d6e9fc 40px;
-    /* overflow-y: hidden; */
-    /* overflow-x: hidden; */
 }
 
-p {
-    text-align: center;
-}
-
-/* img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-} */
-
+/* useful for development to see borders of elements */
 .dev {
     border: solid hotpink 1px;
 }
+
 
 .scene {
     height: 100%;
@@ -45,6 +31,25 @@ p {
     width: 100%;
 }
 
+/* used by vertcenter shortCode, which nests content inside 2 divs:
+   1) div.centered-wrapper (relative positioning)
+   2) div.centered (absolute positining)
+
+   it then specified div.centered::top vai style="top:${fromTopPercent}%;"
+    
+*/ 
+div.centered-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+div.centered {
+    position: absolute;
+    height: max-content;
+    width: 100%;
+}
+
+
 .heading {
     height: 50px;
     width: 100%;
@@ -54,27 +59,27 @@ p {
 }
 
 .lhs {
+    float: left;
     height: 100%;
     width: 50%;
-    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.lhs-with-heading {
+.lhs.with-heading {
     height: calc(100% - 50px);
-    width: 50%;
-    float: left;
 }
 
 .rhs {
+    float: right;
     height: 100%;
     width: 50%;
-    float: right;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.rhs-with-heading {
+.rhs.with-heading {
     height: calc(100% - 50px);
-    width: 50%;
-    float: right;
 }
 
 #scene_id_region {
@@ -144,28 +149,55 @@ ol.centered {
     top: 30%;
 }
 
+
 .hidden {
     display: none;
 }
 
-#nav-btns {
-    /* display: inline-block; */
-    position: relative;
+
+.long-arrow-btn {
+    position: absolute;
     margin: 0;
-    top: -100px;
-    left: -40px;
-    width: 107%;
+    z-index: 3;    
+}
+.long-arrow-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
+.ready-to-answer-btn {
+    /* image 209x81 */
+    top: calc(100% - 111px);
+    left: calc(100% - 241px);
+    content: url("../img/readyToAnswerOrange.png");
+}
+.ready-to-answer-btn:hover {
+    content: url("../img/readyToAnswerYellow.png");
+}
+
+.back-to-question-btn {
+    /* image is 209x81 */
+    top: calc(100% - 111px);
+    left: 30px;
+    content: url("../img/backToQuestionOrange.png");
+}
+.back-to-question-btn:hover {
+    content: url("../img/backToQuestionYellow.png");
+}
+
+
 .nav-btn {
+    position: absolute;
     content: url("../img/buttonorange.png");
+    z-index: 2;
 }
 
 .nav-btn:hover {
     content: url("../img/buttonyellow.png");
 }
 
-.nav-btn-disabled {
+.nav-btn.disabled {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
@@ -173,22 +205,17 @@ ol.centered {
 
 .prev-btn {
     /* should get displayed on top of border*/
-    position: absolute;
-    /* display: block; */
-    /* top: 0; */
-    top: 0;
-    /* right: 0; */
+    /* img is 130x138px */
+    top: calc(100% - 138px);
     left: 5px;
-    z-index: 2;
 }
 
 .next-btn {
     /* should get displayed on top of border*/
-    position: relative;
-    top: 0;
-    left: 89%;
+    /* img is 130x138px */
+    top: calc(100% - 138px);
+    left: calc(100% - 133px);
     transform: scaleX(-1);
-    z-index: 2;
 }
 
 .btn {
