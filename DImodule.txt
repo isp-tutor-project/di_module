@@ -336,7 +336,7 @@ The same is true for the weights for cold water.
 8 
 ---
 layout: dual_column
-Heading:  Results: weight of crystal growth
+heading:  Results: weight of crystal growth
 template: question (as I suppose none of the answers are correct)
 ---
 
@@ -697,7 +697,7 @@ back to ?    I’m ready to answer.
 26 
 ---
 layout: dual_column
-Heading: Results: weight of crystal growth
+heading: Results: weight of crystal growth
 ---
 
 Left Column:
@@ -725,7 +725,7 @@ You’re right! Click anywhere to continue.
 27 
 ---
 layout: dual_column
-Heading:  Results: weight of crystal growth
+heading:  Results: weight of crystal growth
 ---
 
 Left Column:
@@ -742,7 +742,7 @@ Means take into account the value of each of the data points in the condition. S
 27a 
 ---
 layout: dual_column
-Heading: Results: weight of crystal growth
+heading: Results: weight of crystal growth
 ---
 
 Left Column:
@@ -757,7 +757,7 @@ But to use means, you need to make sure that there are not outliers. If there ar
 28 
 ---
 layout: dual_column
-Heading: Results: weight of crystal growth
+heading: Results: weight of crystal growth
 ---
 
 Left Column:
@@ -784,7 +784,7 @@ You’re right! Click anywhere to continue.
 29 
 ---
 layout: dual_column
-Heading: Results: weight of crystal growth
+heading: Results: weight of crystal growth
 ---
 
 Left Column:
@@ -807,7 +807,7 @@ So, the mean weight for the Hot water condition is
 30  
 ---
 layout: dual_column
-Heading: Results: weight of crystal growth
+heading: Results: weight of crystal growth
 ---
 
 Left Column:
@@ -831,7 +831,7 @@ Right! Click anywhere to continue.
 31 
 ---
 layout: dual_column
-Heading: Results: weight of crystal growth
+heading: Results: weight of crystal growth
 ---
 
 Left column:
