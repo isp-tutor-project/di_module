@@ -5,11 +5,13 @@
     {% endif %}
 {% endblock %}
     
-    <div class="dev {% if heading %}lhs-with-heading{%else%}lhs{%endif%}">
+    <div class="lhs {% if heading %} with-heading {% endif %}"
+         {% block lhsWidth %}style="width:50%;"{% endblock %}>
         {% block lhs %}{% endblock %}
     </div>
 
-    <div class="dev {%if heading%}rhs-with-heading{%else%}rhs{%endif%}">
+    <div class="rhs {% if heading %} with-heading {% endif %}"
+         {% block rhsWidth %}style="width:50%;"{% endblock %} >
         {% block rhs %}{% endblock %}
     </div>
 </div>

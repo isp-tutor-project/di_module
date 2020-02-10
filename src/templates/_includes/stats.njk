@@ -1,5 +1,11 @@
 {% extends "dual-column.njk" %}
 
+{% block lhsWidth %} style="width:40%;" {% endblock %}
+{% block rhsWidth %} style="width:60%;" {% endblock %}
+
 {% block lhs %}
-  {% include "dogsTable.njk" %}
+  {% vertcenter 10 %}
+    {% include "dogsTable.njk" %}
+  {% endvertcenter %}
 {% endblock %}
+
