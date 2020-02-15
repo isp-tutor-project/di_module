@@ -1,4 +1,4 @@
-export const sceneData = [
+const sceneData = [
     {
         "id": "intro1",
         "transitions": {
@@ -278,6 +278,14 @@ export const sceneData = [
             "more": "scene17"
         },
         actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion"]
+            },
             { name: "hiliteDogs", args: ["dog_1", "dog_13"] }
         ]
 
@@ -291,6 +299,14 @@ export const sceneData = [
             "more": "scene18"
         },
         actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion"]
+            },
             { name: "hiliteDogs", args: ["dog_2", "dog_12"] }
         ]
 
@@ -304,6 +320,14 @@ export const sceneData = [
             "more": "scene19"
         },
         actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion"]
+            },
             { name: "hiliteDogs", args: ["dog_3", "dog_11"] }
         ]
     },
@@ -316,6 +340,14 @@ export const sceneData = [
             "more": "scene20"
         },
         actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion"]
+            },
             { name: "hiliteDogs", args: ["dog_4", "dog_10"] }
         ]
     },
@@ -328,6 +360,14 @@ export const sceneData = [
             "more": "scene21"
         },
         actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion"]
+            },
             { name: "hiliteDogs", args: ["dog_5", "dog_9"] }
         ]
     },
@@ -340,6 +380,14 @@ export const sceneData = [
             "more": "scene22"
         },
         actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion"]
+            },
             { name: "hiliteDogs", args: ["dog_6", "dog_8"] }
         ]
     },
@@ -351,6 +399,14 @@ export const sceneData = [
             "back": "scene21"
         },
         actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion", "readyToAnswer"]
+            },
             { name: "hiliteDogs", args: ["dog_7"] }
         ]
     },
@@ -361,15 +417,36 @@ export const sceneData = [
             "next": "scene24",
             "backToQuestion": "scene11",
             "readyToAnswer": "scene26"
-        }
+        },
+        actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion", "readyToAnswer"]
+            }
+        ]
     },
     {
         "id": "scene24",
         "transitions": {
             "prev": "scene23",
             "next": "scene25",
+            "backToQuestion": "scene11",
             "more": "scene25"
-        }
+        },
+        actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion"]
+            }
+        ]
     },
     {
         "id": "scene25",
@@ -379,7 +456,17 @@ export const sceneData = [
             "back": "scene24",
             "backToQuestion": "scene11",
             "readyToAnswer": "scene26"
-        }
+        },
+        actions: [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            },
+            {
+                name: "showBtns",
+                args: ["backToQuestion", "readyToAnswer"]
+            }
+        ]
     },
     {
         "id": "scene26",
@@ -392,6 +479,13 @@ export const sceneData = [
         "id": "scene27",
         "transitions": {
             "prev": "scene26",
+            "next": "scene27a"
+        }
+    },
+    {
+        "id": "scene27a",
+        "transitions": {
+            "prev": "scene27",
             "next": "scene28"
         }
     },
@@ -427,13 +521,20 @@ export const sceneData = [
         "id": "scene32",
         "transitions": {
             "prev": "scene31",
+            "next": "scene32a"
+        }
+    },
+    {
+        "id": "scene32a",
+        "transitions": {
+            "prev": "scene32",
             "next": "scene33"
         }
     },
     {
         "id": "scene33",
         "transitions": {
-            "prev": "scene32",
+            "prev": "scene32a",
             "next": "scene34"
         }
     },
@@ -997,3 +1098,13 @@ export const sceneData = [
         }
     }
 ];
+
+function convertToObject(data) {
+    let newData = {};
+    data.forEach((item) => {
+        newData[item.id] = item; 
+    });
+    return newData;
+}
+
+module.exports = convertToObject(sceneData);
