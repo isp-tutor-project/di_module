@@ -1,28 +1,30 @@
 ---
 id: scene29
-tags: scenes
-heading: "Results: weight of crystal growth"
 ---
 
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
 
 {% block lhs %}
-FIXME: 5_TableS29.jpg  (has mean in col2)
-
+    {% vertcenter 10 %}
+    <img src="img/5_TableS29.jpg" class="img-centered" />
+    FIXME:???  (has mean in col2)
+    {% endvertcenter %}
 {% endblock %}
 
 
-{% block rhs %}
+{% block rhs_vert_centered %}
 
-The mean is calculated as the sum of the numbers
-divided by the number of number:
-
-(20 + 27 + 30 + 32 + 41) / 5
-=150/5
-=30
-
-So, the mean weight for the Hot water condition is
-30 mg.
-
+    <p class="text-lg">
+        The mean is calculated as the sum of the numbers divided by the number
+        of number:
+    </p>
+    <code class="text-lg">
+        (20 + 27 + 30 + 32 + 41) / 5<br/>
+        = 150 / 5<br/>
+        = 30
+    </code>
+    <p class="text-lg">
+        So, the mean weight for the Hot water condition is 30 mg.
+    </p>
 {% endblock %}

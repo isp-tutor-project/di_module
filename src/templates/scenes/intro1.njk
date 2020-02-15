@@ -1,19 +1,20 @@
 ---
 id: intro1
-tags: scenes
+
 ---
-{% extends "transition.njk" %}
+{% extends "single-column.njk" %}
 
-{% block vert_centered_content %}
+{% block content %}
+    {% vertcenter%}
+        <p class="text-xxl">
+            <b>Data Interpretation Lesson Introduction</b>
+        </p>
 
-<p class="text-xxl text-centered">
-    <b>Data Interpretation Lesson Introduction</b>
-</p>
-
-<div class="text-lg text-centered">
-    Once we have conducted a good experiment, where we have controlled all<br/>
-    variables except our independent variable, we need to interpret the results.
-</div>
-
+        <p class="text-lg">
+            Once we have conducted a good experiment, where we have controlled
+            all variables except our independent variable, we need to interpret
+            the results.
+        </p>
+    {% endvertcenter %}
 
 {% endblock %}

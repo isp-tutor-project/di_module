@@ -1,19 +1,21 @@
 ---
 id: scene10
-tags: scenes
-heading: "Results: weight of crystal growth"
+
 ---
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
 
-{% block lhs %}
+{# {% block lhs %}
     <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
-{% endblock %}
+{% endblock %} #}
 
-{% block rhs %}
-    <p class="text-xl">
+{% block rhs_vert_centered %}
+    <p class="text-lg">
         So, we will now need to find the best way to summarize the data for
-        each condition. Then, we can compare the results across conditions
+        each condition.
+    </p>
+    <p class="text-lg">
+    Then, we can compare the results across conditions
         using that information.
     </p>
 {% endblock %}

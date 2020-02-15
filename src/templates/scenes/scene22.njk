@@ -1,6 +1,6 @@
 ---
 id: scene22
-tags: scenes
+
 heading: "Results: weight of crystal growth"
 ---
 
@@ -8,21 +8,23 @@ heading: "Results: weight of crystal growth"
 {% import "link.njk" as link %}
 
 {% block rhs %}
-    <p class="text-xl">
-        What is the median value?
-    </p>
-    <p class="text-xl">
-        We have found the middle number!!
-    </p>
-    <p class="text-xl">
-        The median value is 42.4!
-    </p>
-    <p class="text-xl">
-        "Scout" is our median dog.  :) 
-    </p>
-    <p>
-        {{ link.namedTransition(id, "back", "back") }} 
-    </p>
-{% endblock %}
+     {% vertcenter %}
+        <p class="text-xl">
+            <b>What is the <u>median</u> value?</b>
+        </p>
+        <p class="text-xl">
+            We have found the middle number!!
+        </p>
+        <p class="text-xl">
+            The median value is 42.4!
+        </p>
+        <p class="text-xl">
+            “Scout” is our median dog.  :) 
+        </p>
+        <p class="text-centered">
+            {{ link.namedTransition(id, "back", "back") }} 
+        </p> 
+    {% endvertcenter %}
+ {% endblock %}
 
 

@@ -1,32 +1,41 @@
 ---
 id: scene26
-tags: scenes
-heading: "Results: weight of crystal growth"
+question:
+    type: "mc"
+    text: "What do you think is the best way to summarize the data in each condition?"
+    correctAnswer: "c"
+    posFb: "You're right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "Minimum (The Smallest number)"
+        - value: "b"
+          label: "Maximum (The Biggest number)"
+        - value: "c"
+          label: "Mean (or average)"
+        - value: "d"
+          label: "Median (The Middle number)"
+        - value: "e"
+          label: "Mode (The Most common number)"
+        - value: "f"
+          label: "Range"
 ---
 
-
-{% extends "dual-column.njk" %}
-
+ 
+{% extends "wgtCrysGrowth.njk" %}
+{% import "forms.njk" as forms %}
+{# 
 {% block lhs %}
-3_Table3C_S8-26.jpg
+    <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
+{% endblock %} 
+#}
 
-{% endblock %}
+    {# {% vertcenter 10 %} #}
+    {# {% endvertcenter %} #}
 
-
-{% block rhs %}
-
-What do you think is the best way to
-summarize the data in each condition?
-
-* Minimum (The Smallest number)
-* Maximum (The Biggest number)
-* Mean (or average)
-* Median (The Middle number)
-* Mode (The Most common number)
-* Range
-SUBMIT
-You must answer the question before continuing.
-Actually... Click anywhere to continue.
-You’re right! Click anywhere to continue.
-
+{% block rhs_vert_centered %}
+  <p class="text-lg">
+    {{ question.text }}
+  </p>
+  {{ forms.radios_form(id, question, isVert=true) }}
 {% endblock %}

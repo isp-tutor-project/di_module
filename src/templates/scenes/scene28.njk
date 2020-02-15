@@ -1,30 +1,38 @@
 ---
 id: scene28
-tags: scenes
-heading: "Results: weight of crystal growth"
+question:
+    type: "mc"
+    text: "Which calculation will give you the mean:"
+    correctAnswer: "b"
+    posFb: "You're right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "(20 + 27 + 30 + 32 + 41)"
+        - value: "b"
+          label: "(20 + 27 + 30 + 32 + 41) / 5"
+        - value: "c"
+          label: "(41 - 20) / 2"
+        - value: "d"
+          label: "( 41 + 20 ) / 2"
 ---
 
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
+{% import "forms.njk" as forms %}
 
 {% block lhs %}
-2_Table3_S7.jpg
-
+    {% vertcenter 10%}
+        <img src="img/2_Table3_S7.jpg" class="img-centered" />
+    {% endvertcenter %}
 {% endblock %}
 
 
-{% block rhs %}
-Let’s calculate the mean for the Hot water
-condition. Which calculation will give you the
-mean:
+{% block rhs_vert_centered %}
+    <p class="text-lg">
+        Let’s calculate the mean for the Hot water condition. 
+    </p>
+    {{ forms.radios_form(id, question, isVert=true)}}
 
-* (20 + 27 + 30 + 32 + 41)
-* (20 + 27 + 30 + 32 + 41) / 5
-* (41 - 20) / 2
-* ( 41 + 20 ) / 2
-SUBMIT
-You must answer the question before continuing.
-Actually... Click anywhere to continue.
-You’re right! Click anywhere to continue.
 
 {% endblock %}

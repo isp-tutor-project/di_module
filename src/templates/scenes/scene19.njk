@@ -1,6 +1,6 @@
 ---
 id: scene19
-tags: scenes
+
 heading: "Results: weight of crystal growth"
 ---
 
@@ -8,16 +8,18 @@ heading: "Results: weight of crystal growth"
 {% import "link.njk" as link %}
 
 {% block rhs %}
-    <p class="text-xl">
-        What is the median value?
-    </p>
-    <p class="text-xl">
-        And keep doing this until we found the middle number.
-    </p>
-    <p>
-        {{ link.namedTransition(id, "back", "back") }} &nbsp; 
-        {{ link.namedTransition(id, "more", "more") }}
-    </p>
+     {% vertcenter %}
+        <p class="text-xl">
+            <b>What is the <u>median</u> value?</b>
+        </p>
+        <p class="text-xl">
+            Then we’d move down from the top and up from the bottom.
+        </p>
+        <p class="text-centered">
+            {{ link.namedTransition(id, "back", "back") }} &nbsp; 
+            {{ link.namedTransition(id, "more", "more") }}
+        </p> 
+    {% endvertcenter %}
 {% endblock %}
 
 

@@ -1,7 +1,5 @@
 ---
 id: scene8
-tags: scenes
-heading: "Results: weight of crystal growth"
 question:
     type: "mc"
     text: "Do you see any results that look strange to you?"
@@ -16,13 +14,18 @@ question:
           label: "I don't know"
 ---
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
 {% import "forms.njk" as forms %}
 
-{% block lhs %}
-    <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
-{% endblock %}
+{# {% block lhs %}
+    {% vertcenter 10 %}
+      <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
+    {% endvertcenter %}
+{% endblock %} #}
 
-{% block rhs %}
-    {{ forms.radios_form(id, question, isVert=true) }}
+{% block rhs_vert_centered %}
+      <p class="text-lg">
+        {{question.text}}
+      </p>
+      {{ forms.radios_form(id, question, isVert=true, marginLeft=30) }}
 {% endblock %}

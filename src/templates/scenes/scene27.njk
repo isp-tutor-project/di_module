@@ -1,21 +1,25 @@
 ---
 id: scene27
-tags: scenes
-heading: "Results: weight of crystal growth"
 ---
 
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
 
+{# 
 {% block lhs %}
-3_Table3C_S8-26.jpg
+    <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
+{% endblock %} #}
 
-{% endblock %}
 
-
-{% block rhs %}
-Using the mean (or average) is often the best way to represent all data in condition.
-
-Means take into account the value of each of the data points in the condition. So means include the most information that is available.
-
+{% block rhs_vert_centered %}
+    {# {% vertcenter %} #}
+        <p class="text-lg">
+            Using the mean (or average) is often the best way to represent all
+            data in condition.
+        </p>
+        <p class="text-lg">
+            Means take into account the value of each of the data points in the
+            condition. So means include the most information that is available.
+        </p>
+    {# {% endvertcenter %} #}
 {% endblock %}

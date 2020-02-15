@@ -1,32 +1,46 @@
 ---
 id: scene11
-tags: scenes
-heading: "Results: weight of crystal growth"
 ---
 
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
 {% import "link.njk" as link %}
+{# 
 {% block lhs %}
-    <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
-{% endblock %}
+    {% vertcenter 10 %}
+        <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
+    {% endvertcenter %}
+{% endblock %} #}
 
-
-{% block rhs %}
-    <p class="text-xxl">
-        What do you think is the best way to summarize the data in each condition?
-    </p>
-    <p class="text-xl">
-        Take a moment to think about this question before answering. When you’re
-        ready to answer, click “Next”.
-    </p>
-    <ul class="text-xl">
-        <li>Minimum (The Smallest Number)</li>
-        <li>Maximum (The Biggest Number)</li>
-        <li>Mean (or average) {{ link.namedTransition(id, "mean", "what is this?") }}</li>
-        <li>Median (The Middle number) {{ link.namedTransition(id, "median", "what is this?") }}</li>
-        <li>Mode (The Most common number) {{ link.namedTransition(id, "mode", "what is this?") }}</li>
-        <li>Range {{ link.namedTransition(id, "range", "what is this?") }}</li>
-    </ul>
+{% block rhs_vert_centered %}
+    {# {% vertcenter 10 %} #}
+        <p class="text-lg">
+            <b>What do you think is the best way to summarize the data in each
+            condition?</b>
+        </p>
+        <p class="text-lg">
+            Take a moment to think about this question before answering.
+        </p>
+        <p class="text-lg">
+            When you’re ready to answer, click “Next”.
+        </p>
+        <ul class="text-lg">
+            <li>Minimum (The Smallest Number)</li>
+            <li>Maximum (The Biggest Number)</li>
+            <li>
+                Mean (or average)
+                {{ link.namedTransition(id, "mean", "what is this?") }}
+            </li>
+            <li>
+                Median (The Middle number) {{ link.namedTransition(id, "median", "what is this?") }}
+            </li>
+            <li>
+                Mode (The Most common number) {{ link.namedTransition(id, "mode", "what is this?") }}
+            </li>
+            <li>
+                Range {{ link.namedTransition(id, "range", "what is this?") }}
+            </li>
+        </ul>
+    {# {% endvertcenter %} #}
 {% endblock %}
 

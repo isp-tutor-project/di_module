@@ -1,19 +1,23 @@
 ---
 id: scene9
-tags: scenes
-heading: "Results: weight of crystal growth"
+
 ---
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
 
+{# 
 {% block lhs %}
-    <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
-{% endblock %}
+    {% vertcenter 10 %}
+        <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
+    {% endvertcenter %}
+{% endblock %} #}
 
-{% block rhs %}
-    <p class="text-xl">
-        There do not seem to be any data points in either condition that are
-        much bigger or much smaller than most of the other data. (But we’ll
-        look at our data in graph form to double-check this!)
-    </p>
+{% block rhs_vert_centered %}
+        <p class="text-lg">
+            There do not seem to be any data points in either condition that are
+            much bigger or much smaller than most of the other data.
+        </p>
+        <p class="text-lg">
+            (But we’ll look at our data in graph form to double-check this!)
+        </p>
 {% endblock %}

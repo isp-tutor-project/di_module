@@ -1,6 +1,6 @@
 ---
 id: scene13
-tags: scenes
+
 heading: "Results: weight of crystal growth"
 ---
 
@@ -8,7 +8,7 @@ heading: "Results: weight of crystal growth"
 {% import "link.njk" as link %}
 
 {% block rhs %}
-    {% vertcenter 20 %}
+    {% vertcenter %}
         <p class="text-xl">
             <b>What is the <u>mean</u> (or average) value?</b>
         </p>
@@ -34,7 +34,7 @@ heading: "Results: weight of crystal growth"
         <p class="text-lg">
             That would give us the mean of 42.1 lb.
         </p>
-        <p>
+        <p class="text-centered">
             {{ link.namedTransition(id, "back", "back") }} 
         </p>
     {% endvertcenter %}

@@ -1,30 +1,34 @@
 ---
 id: scene30
-tags: scenes
-heading: "Results: weight of crystal growth"
+question:
+    type: "mc"
+    text: Now, what is the mean weight for the Cold water condition?
+    correctAnswer: "b"
+    posFb: "Right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "(3 + 8 +12 + 16 + 21)"
+        - value: "b"
+          label: "(3 + 8 + 12 + 16 + 21) / 5"
+        - value: "c"
+          label: "( 21 + 3 ) / 2"
+        - value: "d"
+          label: "( 21 - 3 ) / 3"
 ---
 
 
-{% extends "dual-column.njk" %}
+{% extends "wgtCrysGrowth.njk" %}
+{% import "forms.njk" as forms %}
 
 {% block lhs %}
-6_Table_S30.jpg
-
+    {% vertcenter 10%}
+        <img src="img/6_Table_S30.jpg" class="img-centered" />
+    {% endvertcenter %}
 {% endblock %}
 
 
-{% block rhs %}
-
-Now, what is the mean weight for the Cold water condition?
-
-* (3 + 8 +12 + 16 + 21)
-* (3 + 8 + 12 + 16 + 21) / 5
-* ( 21 + 3 ) / 2
-* ( 21 - 3 ) / 3
-Submit
-You must answer the question before continuing.
-Actually... Click anywhere to continue.
-Right! Click anywhere to continue.
-
-
+{% block rhs_vert_centered %}
+    <p class="text-lg">{{question.text}}</p>
+    {{ forms.radios_form(id, question, isVert=true, marginLeft=20) }}
 {% endblock %}

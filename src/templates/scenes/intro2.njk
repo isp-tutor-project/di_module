@@ -1,19 +1,18 @@
 ---
 id: intro2
-tags: scenes
+
 ---
-{% extends "transition.njk" %}
+{% extends "single-column.njk" %}
 
-{% block vert_centered_content %}
-
-<p class="text-xxl text-centered">
-    When interpreting experimental results, many students find a difference in mean<br/>
-    across conditions and conclude that the independent variable they tested caused the difference.
-</p>
-
-<p class="text-xl text-centered">
-    But this may not be true!
-</p>
-
-
+{% block content %}
+    {% vertcenter %}
+        <p class="text-xl">
+            When interpreting experimental results, many students find a 
+            difference in mean across conditions and conclude that the 
+            independent variable they tested caused the difference.
+        </p>
+        <p class="text-lg">
+            But this may not be true!
+        </p>
+    {% endvertcenter %}
 {% endblock %}
