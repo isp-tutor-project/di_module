@@ -1,17 +1,13 @@
----
-id: scene25
-
-heading: "Results: weight of crystal growth"
----
 
 {% extends "stats.njk" %}
+
 {% import "link.njk" as link %}
 
 {% block rhs %}
     {% vertcenter %}
-        <p class="text-xl">
-            <b>What is the <u>range</u> of a set of numbers?</b>
-        </p>
+        <h1>
+            What is the <u>range</u> of a set of numbers?
+        </h1>
         <p class="text-xl">
             For example, in this set of dog weights (sorted from lowest to highest),
             the range is calculated as:
@@ -22,7 +18,7 @@ heading: "Results: weight of crystal growth"
             </code>
         </p>
         <p class="text-centered">
-            {{ link.namedTransition(id, "back", "back") }}
+            {{ link.namedTransition(page, "back", "back") }}
         </p>
     {% endvertcenter %}
 {% endblock%}

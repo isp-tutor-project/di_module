@@ -1,23 +1,19 @@
----
-id: scene24
-
-heading: "Results: weight of crystal growth"
----
 
 {% extends "stats.njk" %}
+
 {% import "link.njk" as link %}
 
 {% block rhs %}
     {% vertcenter %}
-        <p class="text-xl">
-            <b>What is the <u>range</u> of a set of numbers?</b>
-        </p>
-        <p class="text-xl">
+        <h1>
+            What is the <u>range</u> of a set of numbers?
+        </h1>
+        <p class="text-lg">
             The range of a set of numbers is the difference between the largest and
             smallest numbers.
         </p>
         <p class="text-centered">
-            {{ link.namedTransition(id, "more", "more") }}
+            {{ link.namedTransition(page, "more", "more") }}
         </p>
     {% endvertcenter %}
 {% endblock %}

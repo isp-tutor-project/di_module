@@ -1,23 +1,19 @@
----
-id: scene21
-
-heading: "Results: weight of crystal growth"
----
 
 {% extends "stats.njk" %}
+
 {% import "link.njk" as link %}
 
 {% block rhs %}
     {% vertcenter %}
-        <p class="text-xl">
-            <b>What is the <u>median</u> value?</b>
-        </p>
+        <h1>
+            What is the <u>median</u> value?
+        </h1>
         <p class="text-xl">
             Then we’d move down from the top and up from the bottom.
         </p>
         <p class="text-centered">
-            {{ link.namedTransition(id, "back", "back") }} &nbsp; 
-            {{ link.namedTransition(id, "more", "more") }}
+            {{ link.namedTransition(page, "back", "back") }} &nbsp; 
+            {{ link.namedTransition(page, "more", "more") }}
         </p> 
     {% endvertcenter %}
 {% endblock %}
