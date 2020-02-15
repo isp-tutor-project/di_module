@@ -109,7 +109,9 @@
     </div> <!-- ./feedback-region -->
 {% endmacro %}
 
-{% macro radios_form(sceneId, question, isVert=false, marginLeft=0) %}
+{% macro radios_form(page, isVert=false, marginLeft=0) %}
+    {% set sceneId = page.data.id %}
+    {% set question = page.data.question %}
     <form id="{{sceneId}}_radio_form"
           style="margin-left:{{marginLeft}}%;">
         {{ hidden_fields(sceneId, question) }}
@@ -120,7 +122,9 @@
 {% endmacro %}
 
 
-{% macro survey_radio_form(sceneId, question=null) %}
+{% macro survey_radio_form(page) %}
+    {% set sceneId = page.data.id %}
+    {% set question = page.data.question %}
     <form id="{{sceneId}}_radio_form" >
         {{ hidden_fields(sceneId, question) }}
         <p class="text-centered">
@@ -131,4 +135,10 @@
             {{ feedback_region(sceneId) }}
         </div>
     </form>
+{% endmacro %}
+
+{% macro showpage(page) %}
+    <pre>
+        {{ page | jsonify(4) | safe }}
+    </pre>
 {% endmacro %}
