@@ -84,7 +84,7 @@
            id="{{id}}"
            name="{{name}}"
            value="{{value}}" required>
-    <label id="{{id}}_label" class="option-label text-xl" for="{{id}}">{{label}}</label>
+    <label id="{{id}}_label" class="option-label text-lg" for="{{id}}">{{label}}</label>
     {% if isVert %} <br/> {% endif %}
 {% endmacro %}
 
@@ -109,26 +109,23 @@
     </div> <!-- ./feedback-region -->
 {% endmacro %}
 
-{% macro radios_form(sceneId, question, isVert=false) %}
-    <div class="centered-form-wrapper">
-        <form id="{{sceneId}}_radio_form" class="form-centered">
-            <div class="text-xl">{{question.text}}</div>
-
-            {{ hidden_fields(sceneId, question) }}
-            {{ radio_btns(sceneId, question.options, isVert=isVert) }}
-            {{ submit_btn(sceneId, "radio") }}
-            {{ feedback_region(sceneId) }}
-        </form>
-    </div>
+{% macro radios_form(sceneId, question, isVert=false, marginLeft=0) %}
+    <form id="{{sceneId}}_radio_form"
+          style="margin-left:{{marginLeft}}%;">
+        {{ hidden_fields(sceneId, question) }}
+        {{ radio_btns(sceneId, question.options, isVert=isVert) }}
+        {{ submit_btn(sceneId, "radio") }}
+        {{ feedback_region(sceneId) }}
+    </form>
 {% endmacro %}
 
 
 {% macro survey_radio_form(sceneId, question=null) %}
-    <form id="{{sceneId}}_radio_form" class="form-centered">
+    <form id="{{sceneId}}_radio_form" >
         {{ hidden_fields(sceneId, question) }}
-        
-        {{ radio_btns(sceneId, surveyOptions) }}
-        
+        <p class="text-centered">
+            {{ radio_btns(sceneId, surveyOptions) }}
+        </p>
         <div class="div-centered">
             {{ submit_btn(sceneId, "radio") }}
             {{ feedback_region(sceneId) }}
