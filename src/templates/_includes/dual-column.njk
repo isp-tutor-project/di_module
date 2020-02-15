@@ -1,9 +1,9 @@
 <div class="container">
-{% block heading %}
-    {% if heading%}
-        <header class="heading">{{heading}}</header>
-    {% endif %}
-{% endblock %}
+    {% block heading %}
+        {% if heading%}
+            <header class="heading">{{heading}}</header>
+        {% endif %}
+    {% endblock %}
     
     <div class="lhs {% if heading %} with-heading {% endif %}"
          {% block lhsWidth %}style="width:50%;"{% endblock %}>
