@@ -28,19 +28,35 @@ module.exports = function(eleventyConfig) {
     
     eleventyConfig.addPassthroughCopy({"dist": "."});
     eleventyConfig.addPassthroughCopy({"src/img": "img"});
-    
-    eleventyConfig.addPairedShortcode("vertcenter", verticallyCenter);
-    // eleventyConfig.addNunjucksShortcode("columnwidths", function (lhsWidth, rhsWidth) {
-    //     return `
-    //     {% block lhsWidth %} style="width:${lhsWidth}%;" {% endblock %}
-    //     {% block rhsWidth %} style="width:${rhsWidth}%;" {% endblock %}
-    // `;
-    // });
 
+    eleventyConfig.addCollection("diScenes", function(collection) {
+        let scenes = collection.getFilteredByTag("scenes");
+        let sceneData = collection.getAll()[0].data.scenes;
+
+        let diScenes = scenes.map((item) => {
+            let id = item.data.page.fileSlug;
+            // console.log(id);
+            let frontMatter = item.template.frontMatter.data;
+            // console.log("\tfrontMatter", frontMatter);
+            // console.log("\tsceneData", sceneData[id]);
+            item.data.page.data = Object.assign({}, frontMatter, sceneData[id]);
+            return item;
+        });
+        return diScenes;
+    });
+
+    eleventyConfig.addNunjucksFilter("jsonify", function(obj, indent=null) {
+        return JSON.stringify(obj, null, indent);
+    });
+
+    eleventyConfig.addPairedShortcode("vertcenter", verticallyCenter);
+    
     return {
         dir: {
             input: "src/templates",
-            output: "di"
+            output: "di",
+            includes: "_includes",
+            data: "_data"
         },
         htmlTemplateEngine: "njk",
         templateFormats: ["njk", "png", "jpg"]
