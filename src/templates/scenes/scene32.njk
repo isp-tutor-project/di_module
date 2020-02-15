@@ -1,12 +1,31 @@
 ---
-id: scene32
-
+question:
+    type: "mc"
+    text: "Comparing the means across condtions, what to these results suggest?"
+    correctAnswer: ""
+    posFb: "Right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "Salt crystals grew more in hot water"
+        - value: "b"
+          label: "Salt crystals grew more in cold water"
+        - value: "c"
+          label: "Salt crystals grew equally well in hot and cold water."
 ---
 
 
 {% extends "single-column.njk" %}
-
+{% import "forms.njk" as forms %}
 {% block content %}
 
+    <h1>Results: weight of crystal growth</h1>
+
+    <img src="img/9_Table_S32-33.jpg" class="img-centered" />
+
+    <p class="text-lg">
+        {{ page.data.question.text }}
+    </p>
+    {{ forms.radios_form(page, isVert=true) }}
 
 {% endblock %}

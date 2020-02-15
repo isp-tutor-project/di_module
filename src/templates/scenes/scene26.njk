@@ -1,5 +1,4 @@
 ---
-id: scene26
 question:
     type: "mc"
     text: "What do you think is the best way to summarize the data in each condition?"
@@ -20,22 +19,14 @@ question:
         - value: "f"
           label: "Range"
 ---
-
  
 {% extends "wgtCrysGrowth.njk" %}
-{% import "forms.njk" as forms %}
-{# 
-{% block lhs %}
-    <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
-{% endblock %} 
-#}
 
-    {# {% vertcenter 10 %} #}
-    {# {% endvertcenter %} #}
+{% import "forms.njk" as forms %}
 
 {% block rhs_vert_centered %}
   <p class="text-lg">
-    {{ question.text }}
+    {{ page.data.question.text }}
   </p>
-  {{ forms.radios_form(id, question, isVert=true) }}
+  {{ forms.radios_form(page, isVert=true) }}
 {% endblock %}

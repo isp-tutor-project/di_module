@@ -1,5 +1,4 @@
 ---
-id: scene30
 question:
     type: "mc"
     text: Now, what is the mean weight for the Cold water condition?
@@ -17,8 +16,8 @@ question:
           label: "( 21 - 3 ) / 3"
 ---
 
-
 {% extends "wgtCrysGrowth.njk" %}
+
 {% import "forms.njk" as forms %}
 
 {% block lhs %}
@@ -29,6 +28,8 @@ question:
 
 
 {% block rhs_vert_centered %}
-    <p class="text-lg">{{question.text}}</p>
-    {{ forms.radios_form(id, question, isVert=true, marginLeft=20) }}
+    <p class="text-lg">
+        {{page.data.question.text}}
+    </p>
+    {{ forms.radios_form(page, isVert=true, marginLeft=20) }}
 {% endblock %}

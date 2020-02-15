@@ -1,5 +1,4 @@
 ---
-id: scene8
 question:
     type: "mc"
     text: "Do you see any results that look strange to you?"
@@ -15,17 +14,12 @@ question:
 ---
 
 {% extends "wgtCrysGrowth.njk" %}
-{% import "forms.njk" as forms %}
 
-{# {% block lhs %}
-    {% vertcenter 10 %}
-      <img src="img/3_Table3C_S8-26.jpg" class="img-centered" />
-    {% endvertcenter %}
-{% endblock %} #}
+{% import "forms.njk" as forms %}
 
 {% block rhs_vert_centered %}
       <p class="text-lg">
-        {{question.text}}
+        {{page.data.question.text}}
       </p>
-      {{ forms.radios_form(id, question, isVert=true, marginLeft=30) }}
+      {{ forms.radios_form(page, isVert=true, marginLeft=30) }}
 {% endblock %}

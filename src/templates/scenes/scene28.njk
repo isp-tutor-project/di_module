@@ -1,5 +1,4 @@
 ---
-id: scene28
 question:
     type: "mc"
     text: "Which calculation will give you the mean:"
@@ -17,8 +16,8 @@ question:
           label: "( 41 + 20 ) / 2"
 ---
 
-
 {% extends "wgtCrysGrowth.njk" %}
+
 {% import "forms.njk" as forms %}
 
 {% block lhs %}
@@ -32,7 +31,8 @@ question:
     <p class="text-lg">
         Let’s calculate the mean for the Hot water condition. 
     </p>
-    {{ forms.radios_form(id, question, isVert=true)}}
-
-
+    <p>
+      {{page.data.question.text}}
+    </p>
+    {{ forms.radios_form(page, isVert=true)}}
 {% endblock %}
