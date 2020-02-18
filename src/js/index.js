@@ -1,7 +1,8 @@
 import "../css/index.css";
 
-import { reIndexData } from './reindex';
-import { sceneData } from "./sceneData";
+// import { reIndexData } from './reindex';
+
+let sceneData = require("../templates/_data/scenes");
 
 let DEBUG;
 let scenes = {};
@@ -22,7 +23,7 @@ function handleRadioFormSubmit(e) {
     let fbRegion = document.getElementById(`${sceneId}_feedback_region`);
 
     if (form.checkValidity()) {
-        let sfi = sceneFormInfo[sceneId]
+        let sfi = scenes[sceneId].formInfo;
         let radios = Array.from(form.elements)
             .filter((ele) => "radio" == ele.type);
         let selectedAnswer = radios.filter((radio) => radio.checked)[0];
@@ -80,7 +81,7 @@ function performDefaultSceneActions() {
 }
 
 function transitionTo(sceneId) {
-    console.log(`transitionTo(${sceneId}) from ${currSceneId}`);
+    // console.log(`transitionTo(${sceneId}) from ${currSceneId}`);
     let action = {
         type: 'SCENE_TRANSITION',
         from: currSceneId,
@@ -90,9 +91,12 @@ function transitionTo(sceneId) {
     currSceneId = sceneId;
     console.log(JSON.stringify(action));
     for (let scene of document.getElementsByClassName("scene")) {
-        scene.classList.remove("current-scene");
+        if (scene.id == currSceneId) {
+            scene.classList.add("active")
+        } else {
+            scene.classList.remove("active");
+        }
     }
-    document.getElementById(currSceneId).classList.add("current-scene");
     sceneIdRegion.innerHTML = currSceneId;
     let currScene = scenes[currSceneId];
     performDefaultSceneActions();
@@ -107,7 +111,7 @@ function transitionTo(sceneId) {
 }
 
 function setCurrScene(sceneId) {
-    console.log(`setCurrScene(${sceneId})`);
+    // console.log(`setCurrScene(${sceneId})`);
     if (!scenes.hasOwnProperty(sceneId)) {
         console.error(`scene "${sceneId} does not exist`);
     } else {
@@ -187,16 +191,16 @@ function selectBtns(btnNames) {
 }
  
 function hiliteDogs(dogs) {
-    console.log(`entering hiliteDogs(${dogs})`);
+    // console.log(`entering hiliteDogs(${dogs})`);
     for (let dog of dogs) {
         document.getElementById(`${currSceneId}_${dog}`).bgColor = "lightblue";
     }
-    console.log("leaving hiliteDogs()")
+    // console.log("leaving hiliteDogs()")
 }
 
 function performSceneActions(actions) {
     // let btns;
-    console.log("performSceneActions()", actions);
+    // console.log("performSceneActions()", actions);
     for (let action of actions) {
         let btns = [];
         switch (action.name) {
@@ -219,7 +223,7 @@ function performSceneActions(actions) {
 
 
 function hideButtons(btns) {
-    console.log("hideButtons()", btns);
+    // console.log("hideButtons()", btns);
     for (let btn of btns) {
         disableBtn(btn)
         hideBtn(btn);
@@ -257,16 +261,45 @@ function setBtnHandlersFromData(data) {
     // and their handlers, but let what transition they perform be data-driven
     // unit-tests verify that all transitions of these 2 types point to the
     // same scene, so we only need to select the first
-    let btq = data.find((scene) => scene.transitions.hasOwnProperty("backToQuestion"));
-    if (btq) {
-        backToQuestionTransition = btq.transitions.backToQuestion;
-        backToQuestionBtn.addEventListener("click", backToQuestion);
+    let foundBtq, foundRtq = false;
+    for (let[sceneId, scene] of Object.entries(data)) {
+        if (foundBtq && foundRtq) {
+            break;
+        }
+        if (scene.hasOwnProperty("transitions")) {
+            let transitions = scene.transitions;
+            if (!foundBtq) {
+                if (transitions.hasOwnProperty("backToQuestion")) {
+                    backToQuestionTransition = transitions.backToQuestion;
+                    backToQuestionBtn.addEventListener("click", backToQuestion);
+                    foundBtq = true;
+                }
+            }
+            if (!foundRtq) {
+                if (transitions.hasOwnProperty("readyToAnswer")) {
+                    readyToAnswerTransition = transitions.readyToAnswer;
+                    readyToAnswerBtn.addEventListener("click", readyToAnswer);
+                    foundRtq = true;            
+                }
+            }
+        }
     }
-    let rtq = data.find((scene) => scene.transitions.hasOwnProperty("readyToAnswer"));
-    if (rtq) {
-        readyToAnswerTransition = rtq.transitions.readyToAnswer;
-        readyToAnswerBtn.addEventListener("click", readyToAnswer);
-    }    
+    if (!foundBtq) {
+        console.error("backToQuestion transition not found");
+    }
+    if (!foundRtq) {
+        console.error("returnToQuestion transition not found");
+    }
+    // let btq = data.find((scene) => scene.transitions.hasOwnProperty("backToQuestion"));
+    // if (btq) {
+    //     backToQuestionTransition = btq.transitions.backToQuestion;
+    //     backToQuestionBtn.addEventListener("click", backToQuestion);
+    // }
+    // let rtq = data.find((scene) => scene.transitions.hasOwnProperty("readyToAnswer"));
+    // if (rtq) {
+    //     readyToAnswerTransition = rtq.transitions.readyToAnswer;
+    //     readyToAnswerBtn.addEventListener("click", readyToAnswer);
+    // }    
 }
 
 function initApp() {
@@ -282,7 +315,8 @@ function initApp() {
     readyToAnswerBtn = document.getElementById("ready_to_answer_btn");
 
     // re-index sceneData (array) as scenes (dict)
-    scenes = reIndexData(sceneData);
+    // scenes = reIndexData(sceneData);
+    scenes = sceneData;
     setBtnHandlersFromData(sceneData);
 
     // setup event-listeners
@@ -325,7 +359,7 @@ function initApp() {
 
     // console.log(scenes);
     // hard-coding to specific scene, but this will be gotten from firestore
-    setCurrScene("scene12");
+    setCurrScene("scene111");
 
     console.log("app init complete");
 }
