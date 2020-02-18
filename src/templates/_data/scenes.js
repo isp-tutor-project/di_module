@@ -1,7 +1,20 @@
 const sceneData = [
     {
+        "id": "start",
+        "transitions": {
+            "next": "intro1"
+        },
+        "actions": [
+            {
+                name: "hideBtns",
+                args: ["prev", "next"]
+            }
+        ]
+    },
+    {
         "id": "intro1",
         "transitions": {
+            "prev": "start",
             "next": "intro2"
         }
     },
@@ -654,13 +667,27 @@ const sceneData = [
         "id": "scene50",
         "transitions": {
             "prev": "scene49",
+            "next": "scene50a"
+        }
+    },
+    {
+        "id": "scene50a",
+        "transitions": {
+            "prev": "scene50",
             "next": "scene51"
         }
     },
     {
         "id": "scene51",
         "transitions": {
-            "prev": "scene50",
+            "prev": "scene50a",
+            "next": "scene51a"
+        }
+    },
+    {
+        "id": "scene51a",
+        "transitions": {
+            "prev": "scene51",
             "next": "scene52"
         }
     },
@@ -745,13 +772,20 @@ const sceneData = [
         "id": "scene63",
         "transitions": {
             "prev": "scene62",
+            "next": "scene63a"
+        }
+    },
+    {
+        "id": "scene63a",
+        "transitions": {
+            "prev": "scene63",
             "next": "scene64"
         }
     },
     {
         "id": "scene64",
         "transitions": {
-            "prev": "scene63",
+            "prev": "scene63a",
             "next": "scene65"
         }
     },
@@ -892,41 +926,13 @@ const sceneData = [
         "id": "scene84",
         "transitions": {
             "prev": "scene83",
-            "next": "scene85"
-        }
-    },
-    {
-        "id": "scene85",
-        "transitions": {
-            "prev": "scene84",
-            "next": "scene86"
-        }
-    },
-    {
-        "id": "scene86",
-        "transitions": {
-            "prev": "scene85",
-            "next": "scene87"
-        }
-    },
-    {
-        "id": "scene87",
-        "transitions": {
-            "prev": "scene86",
-            "next": "scene88"
-        }
-    },
-    {
-        "id": "scene88",
-        "transitions": {
-            "prev": "scene87",
             "next": "scene89"
         }
     },
     {
         "id": "scene89",
         "transitions": {
-            "prev": "scene88",
+            "prev": "scene84",
             "next": "scene90"
         }
     },
@@ -1032,13 +1038,20 @@ const sceneData = [
         "id": "scene104",
         "transitions": {
             "prev": "scene103",
+            "next": "scene104a"
+        }
+    },
+    {
+        "id": "scene104a",
+        "transitions": {
+            "prev": "scene104",
             "next": "scene105"
         }
     },
     {
         "id": "scene105",
         "transitions": {
-            "prev": "scene104",
+            "prev": "scene104a",
             "next": "scene106"
         }
     },
@@ -1060,13 +1073,20 @@ const sceneData = [
         "id": "scene108",
         "transitions": {
             "prev": "scene107",
+            "next": "scene108a"
+        }
+    },
+    {
+        "id": "scene108a",
+        "transitions": {
+            "prev": "scene108",
             "next": "scene109"
         }
     },
     {
         "id": "scene109",
         "transitions": {
-            "prev": "scene108",
+            "prev": "scene108a",
             "next": "scene110"
         }
     },
@@ -1094,10 +1114,46 @@ const sceneData = [
     {
         "id": "scene113",
         "transitions": {
-            "prev": "scene112"
+            "prev": "scene112",
+            "next": "completed"
+        }
+    },
+    {
+        "id": "completed",
+        "transitions": {
+            "prev": "scene113"
         }
     }
 ];
+
+// {
+//     "id": "scene85",
+//         "transitions": {
+//         "prev": "scene84",
+//             "next": "scene86"
+//     }
+// },
+// {
+//     "id": "scene86",
+//         "transitions": {
+//         "prev": "scene85",
+//             "next": "scene87"
+//     }
+// },
+// {
+//     "id": "scene87",
+//         "transitions": {
+//         "prev": "scene86",
+//             "next": "scene88"
+//     }
+// },
+// {
+//     "id": "scene88",
+//         "transitions": {
+//         "prev": "scene87",
+//             "next": "scene89"
+//     }
+// },
 
 function convertToObject(data) {
     let newData = {};
