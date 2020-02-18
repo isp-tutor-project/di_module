@@ -1,12 +1,28 @@
 ---
-id: scene48
-
+question:
+    type: "mc"
+    text: "Compared to the Hot water results, rank the Cold water results from <u>strongest</u> to <u>weakest</u> for how strongly they support the specific prediction:<br/><b>\"Crystals grow more in hot water than cold water.\"</b>"
+    correctAnswer: "a"
+    posFb: "Right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "Cold#1 is strongest, then Cold#2, and Cold#3 is weakest."
+        - value: "b"
+          label: "Cold#1 and Cold#3 are strongest, and Cold#2 is weakest."
+        - value: "c"
+          label: "Cold#3 is strongest, then Cold#2, and Cold#1 is weakest."
 ---
-
 
 {% extends "single-column.njk" %}
 
+{% import "forms.njk" as forms %}
+
 {% block content %}
-
-
+    <h1>Results: weight of crystal growth</h1>
+    <img src="img/19_S48.png" class="img-centered" />
+    <p class="text-lg">
+        {{ page.data.question.text | safe }}
+    </p>
+    {{ forms.radios_form(page, isVert=true, marginLeft=35) }}
 {% endblock %}

@@ -1158,7 +1158,6 @@ But, compared to the Hot water condition, Cold#1 and Cold#3 show the opposite re
 ---
 layout: single_column
 ---
-
 Results: weight of crystal growth
 
 19_S48.png
@@ -1166,6 +1165,7 @@ Results: weight of crystal growth
 * Cold#1 is strongest, then Cold#2, and Cold#3 is weakest.
 * Cold#1 and Cold#3 are strongest, and Cold#2 is weakest.
 * Cold#3 is strongest, then Cold#2, and Cold#1 is weakest.
+
 Submit
 You must answer the question before continuing.
 Actually... Click anywhere to continue.
@@ -1345,7 +1345,6 @@ heading: Results A: Hot (A) and Cold (A) conditions
 
 left_column:
 
-24_GraphS57-59.png
 
 right_column:
 

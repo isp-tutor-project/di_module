@@ -1,5 +1,27 @@
 ---
-id: scene81
-
+question:
+    type: "mc"
+    text: "So, based on the amount of spread in the data, which results are stronger evidence that water temperature affects crystal growth?"
+    correctAnswer: ""
+    posFb: "Right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "Results A"
+        - value: "b"
+          label: "Results B"
+        - value: "c"
+          label: "They are the same."
 ---
+{% extends "single-column.njk" %}
 
+{% import "forms.njk" as forms %}
+
+{% block content %}
+    <img src="img/34_Graph_S78.png" class="img-centered" /> 
+    <p class="text-lg">
+        {{ page.data.question.text }}
+    </p>
+    {{ forms.radios_form(page, isVert=true, marginLeft=45) }}
+
+{% endblock %}

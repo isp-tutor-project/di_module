@@ -1,16 +1,34 @@
 ---
-id: scene58
-
+heading: "Results A: Hot (A) and Cold (A) conditions"
+question:
+    type: "mc"
+    text: "What do these results suggest?"
+    correctAnswer: "a"
+    posFb: "That’s right!"
+    negFb: "Well, actually..."
+    options:
+        - value: "a"
+          label: "Salt crystals grew more in hot water."
+        - value: "b"
+          label: "Salt crystals grew more in cold water."
+        - value: "c"
+          label: "Salt crystals grew equally well in hot and cold water."
 ---
 
 {% extends "dual-column.njk" %}
 
-{% block lhs %}
+{% import "forms.njk" as forms %}
 
+{% block lhs %}
+    <img src="img/24_GraphS57-59.png" class="img-centered" />
 {% endblock %}
 
-
 {% block rhs %}
-
+    {% vertcenter 30 %}
+        <p class="text-lg">
+            {{ page.data.question.text }}
+        </p>
+        {{ forms.radios_form(page, isVert=true) }}
+    {% endvertcenter %}
 {% endblock %}
 

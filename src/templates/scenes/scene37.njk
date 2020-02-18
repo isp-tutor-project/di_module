@@ -1,12 +1,34 @@
 ---
-id: scene37
-
+question:
+    type: "mc"
+    text: "Compared to the hot condition results, which cold condition results are stronger evidence that water temperature affects crystal growth?"
+    correctAnswer: "a"
+    posFb: "That's right!"
+    negFb: "Well, let's think about this..."
+    options:
+        - value: "a"
+          label: "Cold#1"
+        - value: "b"
+          label: "Cold#2"
+        - value: "c"
+          label: "They are the same."
 ---
-
 
 {% extends "single-column.njk" %}
 
+{% import "forms.njk" as forms %}
+
 {% block content %}
-
-
+    <h1>
+        Results: weight of crystal growth
+    </h1>
+    <img src="img/12_Table_S37.png" class="img-centered" />
+    <p class="text-lg">
+        {{ page.data.question.text }}
+    </p>
+    <p>
+        Hint: Is there a bigger difference in means between the Hot and: 
+        Cold#1 condition or the Cold#2 condition?
+    </p>
+    {{ forms.radios_form(page, isVert=true, marginLeft=40) }}
 {% endblock %}

@@ -8,7 +8,7 @@
         <main class="my-main">
             <div id="scene_id_region"></div>
             {% for scene in collections.scenes %}
-                <section id="{{scene.data.id}}" class="scene">
+                <section id="{{scene.fileSlug}}" class="scene ">
                     {{ scene.templateContent | safe }}
                 </section>
             {% endfor %}

@@ -1,12 +1,30 @@
 ---
-id: scene108
-
+question:
+    type: "mc"
+    text: "Based on Results E &amp; F, which statement is more likely to be true?"
+    correctAnswer: ""
+    posFb: "Right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "Salt crystals grow better on a string in water than sugar crystals."
+        - value: "b"
+          label: "Sugar crystals grow better on a string in water than salt crystals."
+        - value: "c"
+          label: "Again, it’s impossible to even guess."
 ---
 
 
 {% extends "single-column.njk" %}
-
+{% import "forms.njk" as forms %}
 {% block content %}
+
+<img src="img/48_Graph_S108-S110.png" class="img-centered" /> 
+
+<p class="text-lg">
+    {{ page.data.question.text | safe }}
+</p>
+{{ forms.radios_form(page, isVert=true, marginLeft=30) }}
 
 
 {% endblock %}

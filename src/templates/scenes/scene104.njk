@@ -1,12 +1,30 @@
 ---
-id: scene104
-
+question:
+    type: "mc"
+    text: "What do these two sets of results (Results E &amp; F) suggest?"
+    correctAnswer: ""
+    posFb: "Right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "Sugar crystals grow better than salt crystals."
+        - value: "b"
+          label: "Salt crystals grow better than sugar crystals."
+        - value: "c"
+          label: "I don’t know; They show opposite results."
 ---
-
 
 {% extends "single-column.njk" %}
 
+{% import "forms.njk" as forms %}
+
 {% block content %}
 
+<img src="img/45_Graph_S104.png" class="img-centered" />  
+
+<p class="text-lg">
+    {{ page.data.question.text | safe}}
+</p>
+{{ forms.radios_form(page, isVert=true, marginLeft=40) }}
 
 {% endblock %}

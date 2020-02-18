@@ -1,5 +1,29 @@
 ---
-id: scene90
-
+question:
+    type: "mc"
+    text: "Which data are LESS spread out?"
+    correctAnswer: ""
+    posFb: "Right!"
+    negFb: "Actually..."
+    options:
+        - value: "a"
+          label: "Results C"
+        - value: "d"
+          label: "Results D"
+        - value: "c"
+          label: "They are the same."
 ---
 
+{% extends "single-column.njk" %}
+
+{% import "forms.njk" as forms %}
+
+{% block content %}
+
+    <img src="img/37_CDTable_S90-91.png" class="img-centered" />  
+    <p class="text-lg">
+        {{ page.data.question.text }}
+    </p>
+    {{ forms.radios_form(page, isVert=true, marginLeft=45) }}
+
+{% endblock %}
