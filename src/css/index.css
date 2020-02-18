@@ -10,11 +10,54 @@ main {
     width: 100%;
     margin: 0;
     background-color: white;
+    font-size: 14pt;
 }
 
 main {
     border: solid #d6e9fc 40px;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    text-align: center;
+}
+
+.text-xxl {
+    font-size: 32pt;
+}
+
+.text-xl {
+    font-size: 24pt;
+}
+
+.text-lg {
+    font-size: 18pt;
+}
+
+.text-md {
+    font-size: 14pt;
+}
+
+.text-sm {
+    font-size: 13pt;
+}
+
+.text-xs {
+    font-size: 12pt;
+}
+
+.text-xxs {
+    font-size: 10pt;
+}
+
+p {
+    /* default to centered. use text-justify if you want to override */
+    text-align: center;
+}
+
 
 /* useful for development to see borders of elements */
 .dev {
@@ -25,7 +68,16 @@ main {
 .scene {
     height: 100%;
     width: 100%;
+    display: none;
+    padding-left: 20px;
+    padding-right: 20px;
 }
+.scene.active {
+    display: block;
+}
+
+
+
 .container {
     height: 100%;
     width: 100%;
@@ -55,7 +107,7 @@ div.centered {
     width: 100%;
     text-align: center;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: 24pt;
 }
 
 .lhs {
@@ -83,18 +135,9 @@ div.centered {
 }
 
 #scene_id_region {
-    position: relative;
-    top: -20px;
-    left: -10px;
-}
-
-.scene {
-    display: none;
-}
-
-.current-scene {
-    display: block;
-    border: solid white 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .img-centered {
@@ -102,44 +145,50 @@ div.centered {
     margin-left: auto;
     margin-right: auto;
 }
-
+/* 
 .centered-form-wrapper {
     position: relative;
     width: 60%;
     left: 40%;
-}
+} */
 
-.form-centered {
-    display: inline-block;
-}
+/* .form-centered { */
+    /* width: max-content; */
+    /* float: right; */
+    /* width: 100%; */
+    /* margin-left: 100px; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+/* } */
 
 ol.centered {
     position: relative;
-    left: 20%;
+    /* left: 10%; */
+    width: max-content;
     list-style-position: inside;
     margin-left: auto;
     margin-right: auto;
 }
 
-.text-xxl {
-    font-size: xx-large;
-}
-
-.text-xl {
-    font-size: x-large;
-}
-
-.text-lg {
-    font-size: large;
+ul.centered {
+    position: relative;
+    /* left: 10%; */
+    width: max-content;
+    list-style-position: inside;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .text-centered {
     text-align: center;
 }
 
+.text-justify {
+    text-align: justify;
+}
 .div-centered {
     /* display: inline-block; */
-    margin-left: 50%;
+    margin-left: 40%;
     /* margin-right: auto; */
 }
 
@@ -233,6 +282,15 @@ ol.centered {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;   
+}
+
+.btn-xxl {
+    font-size: 32pt;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .btn-lg {
