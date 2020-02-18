@@ -122,19 +122,29 @@
 {% endmacro %}
 
 
-{% macro survey_radio_form(page) %}
+{% macro survey_radios_form(page, isVert=false, marginLeft=0) %}
     {% set sceneId = page.data.id %}
     {% set question = page.data.question %}
-    <form id="{{sceneId}}_radio_form" >
-        {{ hidden_fields(sceneId, question) }}
-        <p class="text-centered">
-            {{ radio_btns(sceneId, surveyOptions) }}
-        </p>
-        <div class="div-centered">
+    {% if isVert %}
+        <form id="{{sceneId}}_radio_form"
+            style="margin-left:{{marginLeft}}%;">
+            {{ hidden_fields(sceneId, question) }}
+            {{ radio_btns(sceneId, surveyOptions, isVert=true) }}
             {{ submit_btn(sceneId, "radio") }}
             {{ feedback_region(sceneId) }}
-        </div>
-    </form>
+        </form>
+    {% else %}
+        <form id="{{sceneId}}_radio_form">
+            {{ hidden_fields(sceneId, question) }}
+            <p class="text-centered">
+                {{ radio_btns(sceneId, surveyOptions) }}
+            </p>
+            <div class="div-centered">
+                {{ submit_btn(sceneId, "radio") }}
+                {{ feedback_region(sceneId) }}
+            </div>
+        </form>
+    {% endif %}
 {% endmacro %}
 
 {% macro showpage(page) %}
