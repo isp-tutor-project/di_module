@@ -359,7 +359,7 @@ function initApp() {
 
     // console.log(scenes);
     // hard-coding to specific scene, but this will be gotten from firestore
-    setCurrScene("scene111");
+    setCurrScene("start");
 
     console.log("app init complete");
 }
