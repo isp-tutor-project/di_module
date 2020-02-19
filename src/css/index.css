@@ -142,8 +142,8 @@ div.centered {
 
 .img-centered {
     display: block;
-    max-width: 100%;
-    height: auto;
+    /* max-width: 100%; */
+    /* height: auto; */
     margin-left: auto;
     margin-right: auto;
 }
